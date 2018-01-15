@@ -1,0 +1,19 @@
+{
+    "memos": [
+        {
+            "id": 1,
+            "title": "Swift 4 Basics - Learn to code iOS 11 apps from zero!",
+            "isComplete": false
+        },
+        {
+            "id": 2,
+            "title": "Swift 4 Basics - Learn to code iOS 11 apps from zero!",
+            "isComplete": false
+        },
+        {
+            "id": 3,
+            "title": "Swift 4 Basics - Learn to code iOS 11 apps from zero!",
+            "isComplete": false
+        }
+    ]
+}
