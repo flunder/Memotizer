@@ -1,0 +1,16 @@
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+a {
+    color: $primary-color;
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+main {
+    text-align: center;
+    padding: 2em 5%;
+}

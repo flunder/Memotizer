@@ -1,0 +1,74 @@
+// breakpoints
+
+$S: 480px;
+$M: 768px;
+$L: 1170px;
+
+// media queries
+
+@mixin MQ($canvas) {
+    @if $canvas == S {
+        @media only screen and (min-width: $S) { @content; }
+    } @else if $canvas == M {
+        @media only screen and (min-width: $M) { @content; }
+    } @else if $canvas == L {
+        @media only screen and (min-width: $L) { @content; }
+    }
+}
+
+// Super Light Grid System
+
+@mixin column($percentage, $float-direction: left) {
+    width: 100% * $percentage;
+    float: $float-direction;
+}
+
+
+// Center vertically and/or horizontally an absolute positioned element
+
+@mixin center($xy:xy) {
+    @if $xy == xy {
+        left: 50%;
+        top: 50%;
+        bottom: auto;
+        right: auto;
+        transform: translateX(-50%) translateY(-50%);
+    }
+    @else if $xy == x {
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%);
+    }
+    @else if $xy == y {
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
+    }
+}
+
+// Antialiasing and Font-Rendering
+
+@mixin font-smoothing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// Clearfix
+
+@mixin clearfix {
+    &::after {
+        clear: both;
+        content: "";
+        display: block;
+    }
+}
+
+// Color Tint and Shade
+
+@function shade($color, $percent) {
+    @return mix(#000, $color, $percent);
+}
+
+@function tint($color, $percent) {
+    @return mix(#fff, $color, $percent);
+}
