@@ -3,9 +3,21 @@ import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
 import { fetchMemos } from '../reducers/memo'
 
-const Memo = ({ id, title, isComplete }) => (
+const Note = ({ id, desc }) => (
+    <div className="note">
+        {desc}
+    </div>
+)
+
+const Memo = ({ id, title, isComplete, url, notes = [] }) => (
     <div className="memo">
-        <h2>{title}</h2>
+        <header>
+            <h2>{title}</h2>
+            <h3 className="memo-url">{url}</h3>
+        </header>
+        <main>
+            {notes.map(note => <Note key={note.id} {...note} /> )}
+        </main>
     </div>
 )
 

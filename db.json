@@ -1,19 +1,48 @@
 {
-    "memos": [
+  "memos": [
+    {
+      "id": 1,
+      "title": "Using Sass with Create React App (Without Ejecting)",
+      "url": "https://hackernoon.com/using-sass-with-create-react-app-without-ejecting-b5f4f827ed9e",
+      "isComplete": false,
+      "dateAdded": "2012-04-23T18:25:43.511Z",
+      "notes": [
         {
-            "id": 1,
-            "title": "Swift 4 Basics - Learn to code iOS 11 apps from zero!",
-            "isComplete": false
+          "id": 1,
+          "desc": "asfasfawawg"
         },
         {
-            "id": 2,
-            "title": "Swift 4 Basics - Learn to code iOS 11 apps from zero!",
-            "isComplete": false
-        },
-        {
-            "id": 3,
-            "title": "Swift 4 Basics - Learn to code iOS 11 apps from zero!",
-            "isComplete": false
+          "id": 2,
+          "desc": "asf f faasfasf asf "
         }
-    ]
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Swift 4 Basics - Learn to code iOS 11 apps from zero!",
+      "url": "https://hackernoon.com/using-sass-with-create-react-app-without-ejecting-b5f4f827ed9e",
+      "isComplete": false,
+      "dateAdded": "2012-04-23T18:25:43.511Z",
+      "notes": [
+        {
+          "id": 1,
+          "desc": "asfasfawawg"
+        },
+        {
+          "id": 2,
+          "desc": "asf f faasfasf asf "
+        }
+      ]
+    },
+    {
+      "title": "asf",
+      "url": "asf",
+      "id": 3
+    },
+    {
+      "title": "asf",
+      "url": "asf",
+      "id": 4
+    }
+  ]
 }

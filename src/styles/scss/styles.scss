@@ -5,3 +5,86 @@
 @import './partials/_typography';
 @import './partials/_grid';
 @import './partials/_helpers';
+
+body {
+    max-width: 780px;
+    margin: 0 auto;
+    background-color: #F5F4F2;
+}
+
+.App {
+    margin-top: 2rem;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    position: fixed;
+    margin-left: -60px;
+    top: 10px;
+}
+
+.memo {
+    background-color: white;
+    border-radius: 2px;
+
+    header {
+        padding: 2.3rem 3rem;
+    }
+
+    main {
+
+    }
+
+    .memo-url {
+        margin-top: 2px;
+        color: #aab0bb;
+        font-size: 1.4rem;
+    }
+
+    margin-bottom: 3rem;
+
+}
+
+.note {
+    background-color: #dba0ff3b;
+    padding: 2rem 3rem;
+    border-bottom: 1px solid #ffffff;
+
+    &:last-of-type {
+        border: none;
+    }
+}
+
+.create-memo {
+
+    header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+
+    .create-memo-title,
+    .create-memo-url {
+        display: block;
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid #eee;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .create-memo-submit {
+        -webkit-appearance: none;
+        padding: 1.1rem 2.8rem;
+        background: #cd50f8;
+        border: none;
+        border-radius: 2px;
+        font-size: 1.5rem;
+        color: white;
+        margin-top: 4rem;
+    }
+
+}

@@ -55,10 +55,6 @@ a {
 img {
   max-width: 100%; }
 
-main {
-  text-align: center;
-  padding: 2em 5%; }
-
 /* ----------------------------------------------------------------------------------------
 
     Document Outline
@@ -73,7 +69,7 @@ html {
   font-size: 62.5%; }
 
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -81,6 +77,9 @@ body {
   -webkit-font-smoothing: antialiased;
   font-size: 1.4rem;
   line-height: 1.6; }
+
+input {
+  font-family: sans-serif; }
 
 /* [2] TYPOGRAPHY : SCALE & RHYTHM --------------------------------------------------------
 
@@ -105,8 +104,7 @@ h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-  margin-top: 0;
-  margin-bottom: 2rem; }
+  margin: 0; }
 
 h1, .h1 {
   font-size: 2.0rem;
@@ -115,7 +113,8 @@ h1, .h1 {
 
 h2, .h2 {
   font-size: 3.0rem;
-  line-height: 1.4; }
+  line-height: 1.4;
+  font-weight: 300; }
 
 h3, .h3 {
   font-size: 2.8rem;
@@ -139,10 +138,10 @@ h6, .h6 {
     line-height: 1.2; }
 
   h2, .h2 {
-    font-size: 3.0rem; }
+    font-size: 2.2rem; }
 
   h3, .h3 {
-    font-size: 2.6rem; }
+    font-size: 1.5rem; }
 
   h4, .h4 {
     font-size: 2.0rem; }
@@ -152,6 +151,9 @@ h6, .h6 {
 
   h6, .h6 {
     font-size: 1rem; } }
+.note {
+  font-weight: 300; }
+
 .row {
   margin: 0 auto; }
 
@@ -617,5 +619,61 @@ h6, .h6 {
 ._fullscreen {
   height: 100vh;
   width: 100vw; }
+
+body {
+  max-width: 780px;
+  margin: 0 auto;
+  background-color: #F5F4F2; }
+
+.App {
+  margin-top: 2rem; }
+
+.logo {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  margin-left: -60px;
+  top: 10px; }
+
+.memo {
+  background-color: white;
+  border-radius: 2px;
+  margin-bottom: 3rem; }
+  .memo header {
+    padding: 2.3rem 3rem; }
+  .memo .memo-url {
+    margin-top: 2px;
+    color: #aab0bb;
+    font-size: 1.4rem; }
+
+.note {
+  background-color: #dba0ff3b;
+  padding: 2rem 3rem;
+  border-bottom: 1px solid #ffffff; }
+  .note:last-of-type {
+    border: none; }
+
+.create-memo header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; }
+.create-memo .create-memo-title,
+.create-memo .create-memo-url {
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #eee; }
+  .create-memo .create-memo-title:focus,
+  .create-memo .create-memo-url:focus {
+    outline: none; }
+.create-memo .create-memo-submit {
+  -webkit-appearance: none;
+  padding: 1.1rem 2.8rem;
+  background: #cd50f8;
+  border: none;
+  border-radius: 2px;
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 4rem; }
 
 /*# sourceMappingURL=styles.css.map */
