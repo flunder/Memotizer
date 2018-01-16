@@ -16,6 +16,8 @@ const MEMO_ADD = 'MEMO_ADD'
 const CURRENT_TITLE_UPDATE = 'CURRENT_TITLE_UPDATE'
 const CURRENT_URL_UPDATE = 'CURRENT_URL_UPDATE'
 
+const NOTE_ADD = 'NOTE_ADD'
+
 // ACTIONS
 
 const loadMemos = (memos) => (
@@ -24,6 +26,10 @@ const loadMemos = (memos) => (
 
 const addMemo = (memo) => (
     { type: MEMO_ADD, payload: memo }
+)
+
+export const addNote = (memoID, newNoteID) => (
+    { type: NOTE_ADD, payload: { memoID, newNoteID } }
 )
 
 export const updateCurrentTitle = (val) => (
@@ -62,16 +68,36 @@ export default (state = initialState, action) => {
     switch (action.type) {
 
         case MEMOS_LOAD:
-            return { ...state, memos: action.payload }
+            return { ...state, memos: action.payload.reverse() }
 
         case MEMO_ADD:
             return {
                 ...state,
-                create: {
-                    title: '',
-                    url: ''
-                },
-                memos: state.memos.concat(action.payload)
+                create: { title: '', url: '' },
+                memos: [action.payload, ...state.memos]
+            }
+
+        case NOTE_ADD:
+            return {
+                ...state,
+                memos: [
+                    ...state.memos.map(memo => {
+                        if (memo.id === action.payload.memoID) {
+                            return {
+                                ...memo,
+                                notes: [
+
+                                    ...memo.notes || [], {
+                                        id: action.payload.newNoteID,
+                                        desc: 'test'
+                                    }
+                                ]
+                            };
+                        } else {
+                            return memo;
+                        }
+                    })
+                ]
             }
 
         case CURRENT_TITLE_UPDATE:

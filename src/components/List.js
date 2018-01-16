@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { PropTypes } from 'prop-types'
 import { connect } from 'react-redux'
-import { fetchMemos } from '../reducers/memo'
+import { fetchMemos, addNote } from '../reducers/memo'
 
 const Note = ({ id, desc }) => (
     <div className="note">
@@ -9,7 +8,7 @@ const Note = ({ id, desc }) => (
     </div>
 )
 
-const Memo = ({ id, title, isComplete, url, notes = [] }) => (
+const Memo = ({ id, title, isComplete, url, notes = [], handleAddNote }) => (
     <div className="memo">
         <header>
             <h2>{title}</h2>
@@ -17,6 +16,13 @@ const Memo = ({ id, title, isComplete, url, notes = [] }) => (
         </header>
         <main>
             {notes.map(note => <Note key={note.id} {...note} /> )}
+            <form onSubmit={handleAddNote}>
+                <input
+                    type="submit"
+                    className="memo-add-note-button"
+                    value="+"
+                />
+            </form>
         </main>
     </div>
 )
@@ -27,19 +33,28 @@ class List extends Component {
         this.props.fetchMemos()
     }
 
+    handleAddNote = ({e, memoID, totalNotes}) => {
+        e.preventDefault();
+        this.props.addNote(memoID, totalNotes + 1)
+    }
+
     render() {
         return (
             <section>
-                {this.props.memos.map(memo => <Memo key={memo.id} {...memo} />)}
+                {this.props.memos.map(memo =>
+                    <Memo
+                        key={memo.id}
+                        handleAddNote={(e) => this.handleAddNote({
+                            e: e,
+                            memoID: memo.id,
+                            totalNotes: memo.notes ? memo.notes.length : 0
+                        })}
+                        {...memo}
+                    />
+                )}
             </section>
         )
     }
-}
-
-Memo.propTypes = {
-    id: PropTypes.number,
-    title:  PropTypes.string,
-    isComplete:  PropTypes.bool
 }
 
 const mapStateToProps = (state) => {
@@ -48,12 +63,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        fetchMemos: () => {
-            dispatch(fetchMemos())
-        }
-    }
+const mapDispatchToProps = {
+    fetchMemos,
+    addNote
 }
 
 List = connect(mapStateToProps, mapDispatchToProps)(List)
