@@ -15,7 +15,7 @@ const Memo = ({ id, title, isComplete, url, notes = [], handleAddNote }) => (
             <h3 className="memo-url">{url}</h3>
         </header>
         <main>
-            {notes.map(note => <Note key={note.id} {...note} /> )}
+            {Object.keys(notes).map(id => <Note key={id} {...notes[id]} /> )}
             <form onSubmit={handleAddNote}>
                 <input
                     type="submit"
@@ -33,25 +33,30 @@ class List extends Component {
         this.props.fetchMemos()
     }
 
-    handleAddNote = ({e, memoID, totalNotes}) => {
+    handleAddNote = ({e, id, memo}) => {
         e.preventDefault();
-        this.props.addNote(memoID, totalNotes + 1)
+        const newNoteID = Object.keys(memo.notes).length + 1;
+        this.props.addNote(id, newNoteID)
     }
 
     render() {
+        const { memos } = this.props;
+
+        // const totalNotes =
+
         return (
             <section>
-                {this.props.memos.map(memo =>
-                    <Memo
-                        key={memo.id}
-                        handleAddNote={(e) => this.handleAddNote({
-                            e: e,
-                            memoID: memo.id,
-                            totalNotes: memo.notes ? memo.notes.length : 0
-                        })}
-                        {...memo}
-                    />
-                )}
+                {Object.keys(memos).map(id => {
+                    const memo = memos[id]
+                    return (
+                        <Memo
+                            key={id}
+                            handleAddNote={(e) => this.handleAddNote({e, id, memo})}
+                            {...memo}
+                        />
+                    )
+                })}
+
             </section>
         )
     }

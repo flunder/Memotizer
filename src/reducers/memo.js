@@ -1,10 +1,11 @@
 import { apiFetchMemos, apiCreateMemo } from '../lib/memoSevices'
 
 const initialState = {
-    memos: [],
+    memos: {},
     create: {
         title: '',
-        url: ''
+        url: '',
+        notes: {}
     }
 }
 
@@ -45,9 +46,11 @@ export const updateCurrentUrl = (val) => (
 export const fetchMemos = () => {
     return (dispatch) => {
         apiFetchMemos()
-            .then(memos =>
-                dispatch(loadMemos(memos))
-            )
+            .then(memos => {
+                let memosForState = {}
+                memos.forEach(memo => { memosForState[memo.id] = memo })
+                dispatch(loadMemos(memosForState))
+            })
     }
 }
 
@@ -68,36 +71,34 @@ export default (state = initialState, action) => {
     switch (action.type) {
 
         case MEMOS_LOAD:
-            return { ...state, memos: action.payload.reverse() }
+            return { ...state, memos: action.payload }
 
         case MEMO_ADD:
             return {
                 ...state,
                 create: { title: '', url: '' },
-                memos: [action.payload, ...state.memos]
+                memos: {
+                    ...state.memos,
+                    [action.payload.id]: action.payload
+                }
             }
 
         case NOTE_ADD:
             return {
                 ...state,
-                memos: [
-                    ...state.memos.map(memo => {
-                        if (memo.id === action.payload.memoID) {
-                            return {
-                                ...memo,
-                                notes: [
-
-                                    ...memo.notes || [], {
-                                        id: action.payload.newNoteID,
-                                        desc: 'test'
-                                    }
-                                ]
-                            };
-                        } else {
-                            return memo;
+                memos: {
+                    ...state.memos,
+                    [action.payload.memoID]: {
+                        ...state.memos[action.payload.memoID],
+                        notes: {
+                            ...state.memos[action.payload.memoID].notes,
+                            [action.payload.newNoteID]: {
+                                desc: 'test'
+                            }
                         }
-                    })
-                ]
+                    }
+
+                }
             }
 
         case CURRENT_TITLE_UPDATE:
