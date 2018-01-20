@@ -1,11 +1,14 @@
 import {
     apiCreateMemo,
     apiDeleteMemo,
-    apiFetchMemos
+    apiFetchMemos,
+    apiFetchCategories
 } from '../lib/memoSevices'
 
 const initialState = {
     memos: {},
+    categories: {},
+    categoryFilter: false,
     totalMemos: false,
     createMemo: { title: '', url: '', notes: {} },
     createNote: { memoID: false, noteID: false, desc: '' }
@@ -16,9 +19,12 @@ const initialState = {
 const MEMOS_LOAD = 'MEMOS_LOAD'
 const MEMO_ADD = 'MEMO_ADD'
 const MEMO_REMOVE = 'MEMO_DELETE'
+const MEMO_APPLYFILTER = 'MEMO_APPLYFILTER'
 
 const CURRENT_TITLE_UPDATE = 'CURRENT_TITLE_UPDATE'
 const CURRENT_URL_UPDATE = 'CURRENT_URL_UPDATE'
+
+const CATEGORIES_LOAD = 'CATEGORIES_LOAD'
 
 const NOTE_ADD = 'NOTE_ADD'
 
@@ -36,6 +42,10 @@ const removeMemo = (id) => (
     { type: MEMO_REMOVE, payload: { id } }
 )
 
+export const applyFilter = (val) => (
+    { type: MEMO_APPLYFILTER, payload: { val } }
+)
+
 export const addNote = (memoID, newNoteID) => (
     { type: NOTE_ADD, payload: { memoID, newNoteID } }
 )
@@ -48,11 +58,16 @@ export const updateCurrentUrl = (val) => (
     { type: CURRENT_URL_UPDATE, payload: val }
 )
 
+export const loadCategories = (categories) => (
+    { type: CATEGORIES_LOAD, payload: { categories } }
+)
+
 // ASYNC ACTIONS
 
 export const fetchMemos = () => {
-    return (dispatch) => {
-        apiFetchMemos()
+    return (dispatch, getState) => {
+        const categoryFilter = getState().memo.categoryFilter;
+        apiFetchMemos(categoryFilter)
             .then(memos => {
                 let memosForState = {}
                 memos.forEach(memo => {
@@ -82,6 +97,17 @@ export const deleteMemo = (id) => {
     }
 }
 
+export const fetchCategories = () => {
+    return (dispatch) => {
+        apiFetchCategories()
+            .then(categories => {
+                const categoriesForState = {};
+                categories.forEach(c => categoriesForState[c.id] = c)
+
+                dispatch(loadCategories(categoriesForState))
+            })
+    }
+}
 // REDUCER
 
 export default (state = initialState, action) => {
@@ -114,6 +140,12 @@ export default (state = initialState, action) => {
                 }
             }
 
+        case MEMO_APPLYFILTER:
+            return {
+                ...state,
+                categoryFilter: action.payload.val
+            }
+
         case NOTE_ADD:
             return {
                 ...state,
@@ -134,6 +166,12 @@ export default (state = initialState, action) => {
                 //     memoID: action.payload.memoID,
                 //     noteID: action.payload.newNoteID
                 // }
+            }
+
+        case CATEGORIES_LOAD:
+            return {
+                ...state,
+                categories: action.payload.categories
             }
 
         case CURRENT_TITLE_UPDATE:

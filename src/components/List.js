@@ -9,11 +9,18 @@ class List extends Component {
         this.props.fetchMemos()
     }
 
-    render({ memos } = this.props) {
-        console.log(memos);
+    componentWillReceiveProps(newProps){
+        if (this.props.categoryFilter !== newProps.categoryFilter) {
+            this.props.fetchMemos();
+        }
+    }
+
+    render() {
+        const { memos } = this.props
+
         return (
             <section>
-                {Object.keys(this.props.memos).reverse().map(i =>
+                {Object.keys(memos).reverse().map(i =>
                     <Memo
                         key={memos[i].id}
                         {...memos[i]}
@@ -26,7 +33,8 @@ class List extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        memos: state.memo.memos
+        memos: state.memo.memos,
+        categoryFilter: state.memo.categoryFilter
     }
 }
 

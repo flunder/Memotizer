@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { CreateForm, List } from './components'
+import { CreateForm, List, Filter } from './components'
 
 class App extends Component {
     render() {
@@ -7,7 +7,8 @@ class App extends Component {
             <div className="App">
                 <img src="/assets/images/logo.png" className="logo" alt="Logo" />
                 <CreateForm />
-                <List />
+                <Filter />
+                <List  />
             </div>
         )
     }

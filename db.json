@@ -1,16 +1,40 @@
 {
-  "memos": [
-    {
-      "title": "Should you store your form state in Redux?",
-      "url": "https://goshakkk.name/should-i-put-form-state-into-redux/",
-      "notes": {},
-      "id": 4
-    },
-    {
-      "title": "Container Components",
-      "url": "https://medium.com/@learnreact/container-components-c0e67432e005",
-      "notes": {},
-      "id": 5
-    }
-  ]
+    "memos": [
+        {
+            "title": "Should you store your form state in Redux?",
+            "url": "https://goshakkk.name/should-i-put-form-state-into-redux/",
+            "notes": {},
+            "id": 4,
+            "category": "redux"
+        },
+        {
+            "title": "Container Components",
+            "url": "https://medium.com/@learnreact/container-components-c0e67432e005",
+            "notes": {},
+            "id": 5,
+            "category": "house"
+        },
+        {
+            "title": "Container",
+            "url": "https://medium.com/@learnreact/container-components-c0e67432e005",
+            "notes": {},
+            "id": 6,
+            "category": "house"
+        }
+    ],
+    "categories": [
+        {
+            "id": "1",
+            "name": ""
+        },
+        {
+            "id": "2",
+            "name": "redux"
+        },
+        {
+            "id": "3",
+            "name": "house"
+        }
+    ]
+
 }

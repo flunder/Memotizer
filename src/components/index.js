@@ -1,5 +1,6 @@
 export { CreateForm } from './CreateForm'
 export { CreateNote } from './CreateNote'
+export { Filter } from './Filter'
 export { List } from './List'
 export { Memo } from './Memo'
 export { Note } from './Note'
