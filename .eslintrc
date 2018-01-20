@@ -1,4 +1,5 @@
 {
+    "parser": "babel-eslint",
     "env": {
         "browser": true,
         "es6": true
@@ -32,8 +33,11 @@
             "single"
         ],
         "semi": [
-            "error",
+            "off",
             "never"
+        ],
+        "react/prop-types": [
+            'off'
         ]
     }
 }

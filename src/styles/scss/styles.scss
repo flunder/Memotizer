@@ -44,7 +44,25 @@ body {
     }
 
     .memo-add-note-button {
-        margin: 2rem 3rem;
+        padding: 2rem 3rem;
+        background: #ffffff;
+        -webkit-appearance: none;
+        border: none;
+        outline: none;
+    }
+
+    .memo-delete-note-button-wrap {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .memo-delete-note-button {
+        width: 40px;
+        height: 40px;
+        background: #ffffff;
+        -webkit-appearance: none;
+        border: none;
     }
 }
 
@@ -55,6 +73,11 @@ body {
 
     &:last-of-type {
         border: none;
+    }
+
+    &.isEditing {
+        background: #ffffff;
+        border-bottom: 1px solid #ecebeb;
     }
 }
 
@@ -72,10 +95,7 @@ body {
         width: 100%;
         border: none;
         border-bottom: 1px solid #eee;
-
-        &:focus {
-            outline: none;
-        }
+        outline: none;
     }
 
     .create-memo-submit {
@@ -89,4 +109,17 @@ body {
         margin-top: 4rem;
     }
 
+}
+
+.create-note {
+    .create-note-form {
+
+    }
+
+    .create-note-input {
+        border-style: none;
+        // border-bottom: 1px solid #ddd;
+        width: 100%;
+        outline: none;
+    }
 }

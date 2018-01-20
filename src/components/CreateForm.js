@@ -60,8 +60,8 @@ class CreateForm extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        currentTitleValue: state.memo.create.title,
-        currentUrlValue: state.memo.create.url
+        currentTitleValue: state.memo.createMemo.title,
+        currentUrlValue: state.memo.createMemo.url
     }
 }
 

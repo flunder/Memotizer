@@ -1,27 +1,16 @@
 {
   "memos": [
     {
-      "id": 1,
-      "title": "Using Sass with Create React App (Without Ejecting)",
-      "url": "https://hackernoon.com/using-sass-with-create-react-app-without-ejecting-b5f4f827ed9e",
-      "isComplete": false,
-      "dateAdded": "2012-04-23T18:25:43.511Z",
-      "notes": {
-        "1": {
-          "desc": "asfasfawawg"
-        },
-        "2": {
-          "desc": "asf f faasfasf asf "
-        }
-      }
+      "title": "Should you store your form state in Redux?",
+      "url": "https://goshakkk.name/should-i-put-form-state-into-redux/",
+      "notes": {},
+      "id": 4
     },
     {
-      "id": 2,
-      "title": "Swift 4 Basics - Learn to code iOS 11 apps from zero!",
-      "url": "https://hackernoon.com/using-sass-with-create-react-app-without-ejecting-b5f4f827ed9e",
-      "isComplete": false,
-      "dateAdded": "2012-04-23T18:25:43.511Z",
-      "notes": {}
+      "title": "Container Components",
+      "url": "https://medium.com/@learnreact/container-components-c0e67432e005",
+      "notes": {},
+      "id": 5
     }
   ]
 }

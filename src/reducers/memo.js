@@ -1,18 +1,21 @@
-import { apiFetchMemos, apiCreateMemo } from '../lib/memoSevices'
+import {
+    apiCreateMemo,
+    apiDeleteMemo,
+    apiFetchMemos
+} from '../lib/memoSevices'
 
 const initialState = {
     memos: {},
-    create: {
-        title: '',
-        url: '',
-        notes: {}
-    }
+    totalMemos: false,
+    createMemo: { title: '', url: '', notes: {} },
+    createNote: { memoID: false, noteID: false, desc: '' }
 }
 
 // ACTION-NAMES
 
 const MEMOS_LOAD = 'MEMOS_LOAD'
 const MEMO_ADD = 'MEMO_ADD'
+const MEMO_REMOVE = 'MEMO_DELETE'
 
 const CURRENT_TITLE_UPDATE = 'CURRENT_TITLE_UPDATE'
 const CURRENT_URL_UPDATE = 'CURRENT_URL_UPDATE'
@@ -27,6 +30,10 @@ const loadMemos = (memos) => (
 
 const addMemo = (memo) => (
     { type: MEMO_ADD, payload: memo }
+)
+
+const removeMemo = (id) => (
+    { type: MEMO_REMOVE, payload: { id } }
 )
 
 export const addNote = (memoID, newNoteID) => (
@@ -48,7 +55,9 @@ export const fetchMemos = () => {
         apiFetchMemos()
             .then(memos => {
                 let memosForState = {}
-                memos.forEach(memo => { memosForState[memo.id] = memo })
+                memos.forEach(memo => {
+                    memosForState[memo.id] = memo
+                })
                 dispatch(loadMemos(memosForState))
             })
     }
@@ -56,10 +65,19 @@ export const fetchMemos = () => {
 
 export const createMemo = () => {
     return (dispatch, getState) => {
-        const memo = getState().memo.create
+        const memo = getState().memo.createMemo;
         apiCreateMemo(memo)
             .then(res =>
                 dispatch(addMemo(res))
+            )
+    }
+}
+
+export const deleteMemo = (id) => {
+    return (dispatch) => {
+        apiDeleteMemo(id)
+            .then(
+                dispatch(removeMemo(id))
             )
     }
 }
@@ -83,6 +101,19 @@ export default (state = initialState, action) => {
                 }
             }
 
+        case MEMO_REMOVE:
+            return {
+                ...state,
+                memos: {
+                    ...Object.keys(state.memos).reduce((acc, i) => {
+                        if (state.memos[i].id !== action.payload.id) {
+                            acc[i] = state.memos[i]
+                        }
+                        return acc;
+                    }, [])
+                }
+            }
+
         case NOTE_ADD:
             return {
                 ...state,
@@ -93,19 +124,23 @@ export default (state = initialState, action) => {
                         notes: {
                             ...state.memos[action.payload.memoID].notes,
                             [action.payload.newNoteID]: {
-                                desc: 'test'
+                                isNew: true
                             }
                         }
                     }
-
-                }
+                },
+                // createNote: {
+                //     ...state.createNote,
+                //     memoID: action.payload.memoID,
+                //     noteID: action.payload.newNoteID
+                // }
             }
 
         case CURRENT_TITLE_UPDATE:
-            return { ...state, create: { ...state.create, title: action.payload } }
+            return { ...state, createMemo: { ...state.createMemo, title: action.payload } }
 
         case CURRENT_URL_UPDATE:
-            return { ...state, create: { ...state.create, url: action.payload } }
+            return { ...state, createMemo: { ...state.createMemo, url: action.payload } }
 
         default:
             return state

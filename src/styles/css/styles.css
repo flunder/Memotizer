@@ -400,6 +400,9 @@ h6, .h6 {
   -ms-user-select: none;
   user-select: none; }
 
+._r {
+  position: relative; }
+
 ._fsxl {
   font-size: 1.2em; }
 
@@ -646,7 +649,21 @@ body {
     color: #aab0bb;
     font-size: 1.4rem; }
   .memo .memo-add-note-button {
-    margin: 2rem 3rem; }
+    padding: 2rem 3rem;
+    background: #ffffff;
+    -webkit-appearance: none;
+    border: none;
+    outline: none; }
+  .memo .memo-delete-note-button-wrap {
+    position: absolute;
+    right: 0;
+    top: 0; }
+  .memo .memo-delete-note-button {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    -webkit-appearance: none;
+    border: none; }
 
 .note {
   background-color: #dba0ff3b;
@@ -654,6 +671,9 @@ body {
   border-bottom: 1px solid #ffffff; }
   .note:last-of-type {
     border: none; }
+  .note.isEditing {
+    background: #ffffff;
+    border-bottom: 1px solid #ecebeb; }
 
 .create-memo header {
   display: flex;
@@ -664,10 +684,8 @@ body {
   display: block;
   width: 100%;
   border: none;
-  border-bottom: 1px solid #eee; }
-  .create-memo .create-memo-title:focus,
-  .create-memo .create-memo-url:focus {
-    outline: none; }
+  border-bottom: 1px solid #eee;
+  outline: none; }
 .create-memo .create-memo-submit {
   -webkit-appearance: none;
   padding: 1.1rem 2.8rem;
@@ -677,5 +695,10 @@ body {
   font-size: 1.5rem;
   color: white;
   margin-top: 4rem; }
+
+.create-note .create-note-input {
+  border-style: none;
+  width: 100%;
+  outline: none; }
 
 /*# sourceMappingURL=styles.css.map */
