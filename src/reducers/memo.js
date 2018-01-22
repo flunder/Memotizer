@@ -2,16 +2,14 @@ import {
     apiCreateMemo,
     apiDeleteMemo,
     apiFetchMemos,
-    apiFetchCategories
+    apiFetchCategories,
+    apiUpdateMemo
 } from '../lib/memoSevices'
 
 const initialState = {
     memos: {},
     categories: {},
-    categoryFilter: false,
-    totalMemos: false,
-    createMemo: { title: '', url: '', notes: {} },
-    createNote: { memoID: false, noteID: false, desc: '' }
+    categoryFilter: false
 }
 
 // ACTION-NAMES
@@ -20,15 +18,11 @@ const MEMOS_LOAD = 'MEMOS_LOAD'
 const MEMO_ADD = 'MEMO_ADD'
 const MEMO_REMOVE = 'MEMO_DELETE'
 const MEMO_APPLYFILTER = 'MEMO_APPLYFILTER'
-
-const CURRENT_TITLE_UPDATE = 'CURRENT_TITLE_UPDATE'
-const CURRENT_URL_UPDATE = 'CURRENT_URL_UPDATE'
+const MEMO_UPDATE = 'MEMO_UPDATE'
 
 const CATEGORIES_LOAD = 'CATEGORIES_LOAD'
 
-const NOTE_ADD = 'NOTE_ADD'
-
-// ACTIONS
+// ACTION CREATORS
 
 const loadMemos = (memos) => (
     { type: MEMOS_LOAD, payload: memos }
@@ -42,27 +36,19 @@ const removeMemo = (id) => (
     { type: MEMO_REMOVE, payload: { id } }
 )
 
+const updateMemo = (memoID, memo) => (
+    { type: MEMO_UPDATE, payload: { memoID, memo } }
+)
+
 export const applyFilter = (val) => (
     { type: MEMO_APPLYFILTER, payload: { val } }
-)
-
-export const addNote = (memoID, newNoteID) => (
-    { type: NOTE_ADD, payload: { memoID, newNoteID } }
-)
-
-export const updateCurrentTitle = (val) => (
-    { type: CURRENT_TITLE_UPDATE, payload: val }
-)
-
-export const updateCurrentUrl = (val) => (
-    { type: CURRENT_URL_UPDATE, payload: val }
 )
 
 export const loadCategories = (categories) => (
     { type: CATEGORIES_LOAD, payload: { categories } }
 )
 
-// ASYNC ACTIONS
+// ASYNC ACTION CREATORS
 
 export const fetchMemos = () => {
     return (dispatch, getState) => {
@@ -78,10 +64,10 @@ export const fetchMemos = () => {
     }
 }
 
-export const createMemo = () => {
-    return (dispatch, getState) => {
-        const memo = getState().memo.createMemo;
-        apiCreateMemo(memo)
+export const createMemo = ({title, url}) => {
+    return (dispatch) => {
+        const newMemo = { title, url, notes: {} }
+        apiCreateMemo(newMemo)
             .then(res =>
                 dispatch(addMemo(res))
             )
@@ -108,6 +94,33 @@ export const fetchCategories = () => {
             })
     }
 }
+
+export const addNote = ({memoID, noteValue}) => {
+    return (dispatch, getState) => {
+        const memo = getState().memo.memos[memoID];
+        const notes = memo.notes;
+        const noteID = Object.keys(notes).length;
+        const note = { id: noteID, desc: noteValue };
+        const memoForPost = { ...memo, notes: [ ...notes, note ] }
+        apiUpdateMemo(memoID, memoForPost)
+            .then(res =>
+                dispatch(updateMemo(memo.id, res))
+            )
+    }
+}
+
+export const deleteNote = ({memoID, noteID}) => {
+    return (dispatch, getState) => {
+        const memo = getState().memo.memos[memoID];
+        const notes = memo.notes.filter(note => note.id !== noteID);
+        const memoForPost = { ...memo, notes: notes }
+        apiUpdateMemo(memoID, memoForPost)
+            .then(res =>
+                dispatch(updateMemo(memo.id, res))
+            )
+    }
+}
+
 // REDUCER
 
 export default (state = initialState, action) => {
@@ -118,14 +131,7 @@ export default (state = initialState, action) => {
             return { ...state, memos: action.payload }
 
         case MEMO_ADD:
-            return {
-                ...state,
-                create: { title: '', url: '' },
-                memos: {
-                    ...state.memos,
-                    [action.payload.id]: action.payload
-                }
-            }
+            return { ...state, memos: { ...state.memos, [action.payload.id]: action.payload } }
 
         case MEMO_REMOVE:
             return {
@@ -141,44 +147,13 @@ export default (state = initialState, action) => {
             }
 
         case MEMO_APPLYFILTER:
-            return {
-                ...state,
-                categoryFilter: action.payload.val
-            }
+            return { ...state, categoryFilter: action.payload.val }
 
-        case NOTE_ADD:
-            return {
-                ...state,
-                memos: {
-                    ...state.memos,
-                    [action.payload.memoID]: {
-                        ...state.memos[action.payload.memoID],
-                        notes: {
-                            ...state.memos[action.payload.memoID].notes,
-                            [action.payload.newNoteID]: {
-                                isNew: true
-                            }
-                        }
-                    }
-                },
-                // createNote: {
-                //     ...state.createNote,
-                //     memoID: action.payload.memoID,
-                //     noteID: action.payload.newNoteID
-                // }
-            }
+        case MEMO_UPDATE:
+            return { ...state, memos: { ...state.memos, [action.payload.memoID]: action.payload.memo } }
 
         case CATEGORIES_LOAD:
-            return {
-                ...state,
-                categories: action.payload.categories
-            }
-
-        case CURRENT_TITLE_UPDATE:
-            return { ...state, createMemo: { ...state.createMemo, title: action.payload } }
-
-        case CURRENT_URL_UPDATE:
-            return { ...state, createMemo: { ...state.createMemo, url: action.payload } }
+            return { ...state, categories: action.payload.categories }
 
         default:
             return state

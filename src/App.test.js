@@ -1,9 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import App from './App';
+import {shallow} from 'enzyme';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
-});
+describe('The main app', () => {
+    it('the app should show the logo', () => {
+        const app  = shallow(<App/>);
+
+        expect(app.contains(
+            <img src="/assets/images/logo.png" className="logo" alt="Logo" />
+        )).toBe(true);
+    })
+})

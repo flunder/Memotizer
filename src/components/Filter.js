@@ -4,10 +4,6 @@ import { applyFilter, fetchCategories } from '../reducers/memo'
 
 class Filter extends Component {
 
-    state = {
-        filterValue: ''
-    }
-
     componentDidMount() {
         this.props.fetchCategories();
     }
@@ -17,17 +13,15 @@ class Filter extends Component {
     }
 
     render(){
-
         const { categories, categoryFilter } = this.props;
 
         return (
-            <form>
-                <select onChange={this.handleChange} value={this.props.categoryFilter}>
+            <form className="filter">
+                <select onChange={this.handleChange} value={categoryFilter}>
                     {Object.keys(categories).map(i => (
                         <option
                             key={categories[i].id}
-                            value={categories[i].name}
-                            selected={categoryFilter === categories[i].name}>
+                            value={categories[i].name}>
                             {categories[i].name}
                         </option>
                     ))}

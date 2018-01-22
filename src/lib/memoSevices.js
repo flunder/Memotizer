@@ -1,11 +1,15 @@
+const baseUrl = process.env.REACT_APP_BASE_URL;
+
+console.log(baseUrl);
+
 export const apiFetchMemos = (categoryFilter) => {
     const categoryFilterBy = categoryFilter ? `&category=${categoryFilter}` : '';
-    return fetch(`http://localhost:8080/memos?_sort=id&_order=desc${categoryFilterBy}`)
+    return fetch(`${baseUrl}/memos?_sort=id&_order=desc${categoryFilterBy}`)
         .then(res => res.json())
 }
 
 export const apiCreateMemo = (memo) => {
-    return fetch('http://localhost:8080/memos', {
+    return fetch(`${baseUrl}/memos`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -17,7 +21,7 @@ export const apiCreateMemo = (memo) => {
 }
 
 export const apiDeleteMemo = (id) => {
-    return fetch(`http://localhost:8080/memos/${id}`, {
+    return fetch(`${baseUrl}/memos/${id}`, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json',
@@ -27,6 +31,18 @@ export const apiDeleteMemo = (id) => {
 }
 
 export const apiFetchCategories = () => {
-    return fetch('http://localhost:8080/categories')
+    return fetch(`${baseUrl}/categories`)
+        .then(res => res.json())
+}
+
+export const apiUpdateMemo = (id, memo) => {
+    return fetch(`${baseUrl}/memos/${id}`, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(memo)
+    })
         .then(res => res.json())
 }

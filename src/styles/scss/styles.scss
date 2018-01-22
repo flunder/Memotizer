@@ -17,17 +17,17 @@ body {
 }
 
 .logo {
+    position: fixed;
+    top: 10px;
     width: 50px;
     height: 50px;
-    position: fixed;
     margin-left: -60px;
-    top: 10px;
 }
 
 .memo {
+    margin-bottom: 3rem;
     background-color: white;
     border-radius: 2px;
-    margin-bottom: 3rem;
 
     header {
         padding: 2.3rem 3rem;
@@ -39,36 +39,64 @@ body {
 
     .memo-url {
         margin-top: 2px;
-        color: #aab0bb;
         font-size: 1.4rem;
+        color: #aab0bb;
     }
 
     .memo-add-note-button {
+        display: block;
+        width: 100%;
         padding: 2rem 3rem;
+        text-align: left;
+        cursor: pointer;
         background: #ffffff;
-        -webkit-appearance: none;
         border: none;
         outline: none;
+
+        -webkit-appearance: none;
     }
 
     .memo-delete-note-button-wrap {
         position: absolute;
-        right: 0;
         top: 0;
+        right: 0;
     }
 
     .memo-delete-note-button {
-        width: 40px;
-        height: 40px;
-        background: #ffffff;
-        -webkit-appearance: none;
+        width: 4.5rem;
+        height: 4.5rem;
+        font-size: 2rem;
+        font-weight: 100;
+        color: #635f5f;
+        background: transparent;
         border: none;
+        transform: rotateZ(45deg);
+
+        -webkit-appearance: none;
+    }
+}
+
+.button {
+    padding: 1rem 2.5rem;
+    font-size: 1.5rem;
+    color: #b025ffde;
+    cursor: pointer;
+    border: none;
+    border: 1px solid #c867ff63;
+    border-radius: 3px;
+    transition: 0.3s background-color;
+
+    -webkit-appearance: none;
+
+    &:hover {
+        background-color: #f7e9ff;
     }
 }
 
 .note {
-    background-color: #dba0ff3b;
+    position: relative;
     padding: 2rem 3rem;
+    background-color: #dba0ff3b;
     border-bottom: 1px solid #ffffff;
 
     &:last-of-type {
@@ -76,8 +104,49 @@ body {
     }
 
     &.isEditing {
+        padding: 0;
         background: #ffffff;
-        border-bottom: 1px solid #ecebeb;
+
+        form {
+            display: flex;
+
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        footer {
+            margin: 2rem 3rem;
+        }
+    }
+
+    .textarea {
+        display: block;
+        width: 100%;
+        min-height: 100px;
+        padding: 2rem 3rem;
+        background: #fafafa;
+        border-style: none;
+        outline: none;
+        font-size: 1.35rem;
+        font-weight: 100;
+    }
+
+    .delete {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 50px;
+        height: 100%;
+        font-size: 1.2rem;
+        font-weight: 100;
+        color: black;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        transform: rotate(45deg);
+        outline: none;
+
+        -webkit-appearance: none;
     }
 }
 
@@ -85,6 +154,7 @@ body {
 
     header {
         display: flex;
+
         flex-direction: column;
         align-items: flex-end;
     }
@@ -98,28 +168,12 @@ body {
         outline: none;
     }
 
-    .create-memo-submit {
-        -webkit-appearance: none;
-        padding: 1.1rem 2.8rem;
-        background: #cd50f8;
-        border: none;
-        border-radius: 2px;
-        font-size: 1.5rem;
-        color: white;
+    .create-memo-button {
         margin-top: 4rem;
     }
 
 }
 
-.create-note {
-    .create-note-form {
-
-    }
-
-    .create-note-input {
-        border-style: none;
-        // border-bottom: 1px solid #ddd;
-        width: 100%;
-        outline: none;
-    }
+.filter {
+    margin-bottom: 3rem;
 }

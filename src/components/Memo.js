@@ -33,13 +33,12 @@ class Memo extends Component {
                 </header>
 
                 <main>
-                    {Object.keys(notes).map(noteID =>
+                    {Object.keys(notes).map(i =>
                         <Note
-                            key={noteID}
+                            key={notes[i].id}
                             memoID={id}
-                            noteID={noteID}
-
-                            {...notes[id]}
+                            noteID={notes[i].id}
+                            desc={notes[i].desc}
                         />
                     )}
 

@@ -1,40 +1,63 @@
 {
-    "memos": [
+  "memos": [
+    {
+      "title": "Should you store your form state in Redux?",
+      "url": "https://goshakkk.name/should-i-put-form-state-into-redux/",
+      "notes": [
         {
-            "title": "Should you store your form state in Redux?",
-            "url": "https://goshakkk.name/should-i-put-form-state-into-redux/",
-            "notes": {},
-            "id": 4,
-            "category": "redux"
-        },
-        {
-            "title": "Container Components",
-            "url": "https://medium.com/@learnreact/container-components-c0e67432e005",
-            "notes": {},
-            "id": 5,
-            "category": "house"
-        },
-        {
-            "title": "Container",
-            "url": "https://medium.com/@learnreact/container-components-c0e67432e005",
-            "notes": {},
-            "id": 6,
-            "category": "house"
+          "id": 2,
+          "desc": "we"
         }
-    ],
-    "categories": [
+      ],
+      "id": 4,
+      "category": "redux"
+    },
+    {
+      "title": "Container Components",
+      "url": "https://medium.com/@learnreact/container-components-c0e67432e005",
+      "notes": [],
+      "id": 5,
+      "category": "house"
+    },
+    {
+      "title": "http://facebook.github.io/jest/docs/en/using-matchers.html",
+      "url": "http://facebook.github.io/jest/docs/en/using-matchers.html",
+      "notes": [
         {
-            "id": "1",
-            "name": ""
+          "id": 0,
+          "desc": "expect(2 + 2).toBe(4);"
         },
         {
-            "id": "2",
-            "name": "redux"
-        },
-        {
-            "id": "3",
-            "name": "house"
+          "id": 1,
+          "desc": "expect(data).toEqual({one: 1, two: 2});"
         }
-    ]
-
+      ],
+      "id": 6
+    },
+    {
+      "title": "Build A React App With Redux",
+      "url": "https://egghead.io/courses/build-a-react-app-with-redux",
+      "notes": [
+        {
+          "id": 0,
+          "desc": "E26: using REACT_APP_BASE_URL=http://localhost:8080 in .env "
+        }
+      ],
+      "id": 7
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "name": ""
+    },
+    {
+      "id": "2",
+      "name": "redux"
+    },
+    {
+      "id": "3",
+      "name": "house"
+    }
+  ]
 }

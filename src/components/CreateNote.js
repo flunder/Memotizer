@@ -4,60 +4,72 @@ import { addNote } from '../reducers/memo'
 
 class CreateNote extends Component {
 
-    componentWillReceiveProps(newProps) {
-        // if (newProps.createMemoId = )
+    state = {
+        isEditing: false,
+        value: ''
     }
 
     handleChange = (e) => {
-        this.props.updateNoteValue(e.currentTarget.value);
+        this.setState({
+            value: e.currentTarget.value
+        })
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
+
+        this.props.addNote({
+            memoID: this.props.memoID,
+            noteValue: this.editTaskInput.value
+        })
+
+        this.setState({
+            isEditing: false,
+            value: ''
+        })
     }
 
     handleAddNote = (e) => {
         e.preventDefault();
-        const newNoteID = this.props.totalNotes + 1;
-        this.props.addNote(this.props.memoID, newNoteID);
+
+        this.setState({
+            isEditing: true
+        }, () => {
+            this.editTaskInput.focus();
+        })
     }
 
     render() {
 
-        if (this.props.isEditing) {
+        if (this.state.isEditing) {
             return (
-                <div className="note isEditing create-note">
+                <div className="note isEditing">
                     <form onSubmit={this.handleSubmit}>
-                        <input
-                            className="create-note-input"
-                            type="text"
+                        <textarea
+                            className="textarea"
                             onChange={this.handleChange}
-                        />
+                            ref={node => this.editTaskInput = node}
+                            type="text"
+                            value={this.state.value}>
+                        </textarea>
+                        <footer className="footer">
+                            <button type="submit" className="button">
+                                Create
+                            </button>
+                        </footer>
                     </form>
                 </div>
             )
         }
 
         return (
-            <form onSubmit={this.handleAddNote}>
-                <input
-                    type="submit"
-                    className="memo-add-note-button"
-                    value="+"
-                />
-            </form>
+            <button className="memo-add-note-button" onClick={this.handleAddNote}>+</button>
+
         )
     }
 
 }
 
-const mapStateToProps = (state) => {
-    return {
-        createMemoId: state.memo.createNote.memoID,
-        createNoteId: state.memo.createNote.noteID
-    }
-}
-
-CreateNote = connect( mapStateToProps , {addNote})(CreateNote)
+CreateNote = connect(null, {addNote})(CreateNote)
 
 export { CreateNote }

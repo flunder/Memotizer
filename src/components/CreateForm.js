@@ -1,20 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { updateCurrentTitle, updateCurrentUrl, createMemo } from '../reducers/memo'
+import { createMemo } from '../reducers/memo'
 
 class CreateForm extends Component {
 
-    handleTitleChange = (e) => {
-        this.props.updateCurrentTitle(e.currentTarget.value)
-    }
-
-    handleUrlChange = (e) => {
-        this.props.updateCurrentUrl(e.currentTarget.value)
+    state = {
+        title: '',
+        url: ''
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.createMemo();
+
+        const { title, url } = this.state;
+        this.props.createMemo({title, url});
+        this.clearState();
+    }
+
+    clearState = () => {
+        this.setState({ title: '', url: '' })
     }
 
     render() {
@@ -27,8 +31,8 @@ class CreateForm extends Component {
 
                         <input
                             type="text"
-                            value={this.props.currentTitleValue}
-                            onChange={this.handleTitleChange}
+                            value={this.state.title}
+                            onChange={(e) => this.setState({ title: e.currentTarget.value })}
                             placeholder="Title"
                             className="create-memo-title h2"
                             required
@@ -36,8 +40,8 @@ class CreateForm extends Component {
 
                         <input
                             type="text"
-                            value={this.props.currentUrlValue}
-                            onChange={this.handleUrlChange}
+                            value={this.state.url}
+                            onChange={(e) => this.setState({ url: e.currentTarget.value })}
                             placeholder="Url"
                             className="create-memo-url h3 memo-url"
                             required
@@ -45,7 +49,7 @@ class CreateForm extends Component {
 
                         <input
                             type="submit"
-                            className="create-memo-submit"
+                            className="button create-memo-button"
                         />
 
                     </header>
@@ -57,20 +61,6 @@ class CreateForm extends Component {
     }
 }
 
-
-const mapStateToProps = (state) => {
-    return {
-        currentTitleValue: state.memo.createMemo.title,
-        currentUrlValue: state.memo.createMemo.url
-    }
-}
-
-const mapDispatchToProps = {
-    updateCurrentTitle,
-    updateCurrentUrl,
-    createMemo
-}
-
-CreateForm = connect(mapStateToProps, mapDispatchToProps)(CreateForm)
+CreateForm = connect(null, {createMemo})(CreateForm)
 
 export { CreateForm }
