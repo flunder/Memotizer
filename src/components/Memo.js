@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Note, CreateNote } from '.'
+import { CreateNote, ConfirmClick , Note } from '.'
 import { deleteMemo } from '../reducers/memo'
 
 class Memo extends Component {
@@ -17,19 +17,12 @@ class Memo extends Component {
             <div className="memo">
 
                 <header className="_r">
-
                     <h2>{title}</h2>
-
                     <h3 className="memo-url">{url}</h3>
 
-                    <form onSubmit={this.handleDeleteMemo} className="memo-delete-note-button-wrap">
-                        <input
-                            type="submit"
-                            className="memo-delete-note-button"
-                            value="+"
-                        />
-                    </form>
-
+                    <ConfirmClick onClick={this.handleDeleteMemo} className="delete-button-wrap">
+                        <button className="delete-button">+</button>
+                    </ConfirmClick>
                 </header>
 
                 <main>

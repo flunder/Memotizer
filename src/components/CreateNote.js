@@ -39,6 +39,12 @@ class CreateNote extends Component {
         })
     }
 
+    handleCancel = () => {
+        this.setState({
+            isEditing: false
+        })
+    }
+
     render() {
 
         if (this.state.isEditing) {
@@ -53,7 +59,10 @@ class CreateNote extends Component {
                             value={this.state.value}>
                         </textarea>
                         <footer className="footer">
-                            <button type="submit" className="button">
+                            <button type="button" className="button button--secondary" onClick={this.handleCancel}>
+                                Cancel
+                            </button>
+                            <button type="submit" className="button button--primary">
                                 Create
                             </button>
                         </footer>

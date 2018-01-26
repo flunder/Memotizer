@@ -1,9 +1,16 @@
+/* -----------------------------------------------------------------------------
+
+    Styles
+
+------------------------------------------------------------------------------*/
+
 @import './partials/_variables';
 @import './partials/_mixins';
 @import './partials/_reset';
 @import './partials/_base';
 @import './partials/_typography';
 @import './partials/_grid';
+@import './partials/_buttons';
 @import './partials/_helpers';
 
 body {
@@ -56,40 +63,44 @@ body {
         -webkit-appearance: none;
     }
 
-    .memo-delete-note-button-wrap {
+    .delete-button-wrap {
         position: absolute;
         top: 0;
         right: 0;
-    }
 
-    .memo-delete-note-button {
-        width: 4.5rem;
-        height: 4.5rem;
-        font-size: 2rem;
-        font-weight: 100;
-        color: #635f5f;
-        background: transparent;
-        border: none;
-        transform: rotateZ(45deg);
+        .delete-button {
+            float: right;
+            width: 4.5rem;
+            height: 4.5rem;
+            font-size: 2rem;
+            font-weight: 300;
+            color: #635f5f;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            outline: none;
+            transform: rotateZ(45deg);
 
-        -webkit-appearance: none;
-    }
-}
+            -webkit-appearance: none;
+            transition: color 0.3s;
 
-.button {
-    padding: 1rem 2.5rem;
-    font-size: 1.5rem;
-    color: #b025ffde;
-    cursor: pointer;
-    border: none;
-    border: 1px solid #c867ff63;
-    border-radius: 3px;
-    transition: 0.3s background-color;
+            &:hover {
+                color: black;
+            }
 
-    -webkit-appearance: none;
+        }
 
-    &:hover {
-        background-color: #f7e9ff;
+
+
+        &--note {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50px;
+            height: 100%;
+            font-size: 1.2rem;
+            font-weight: 100;
+        }
     }
 }
 
@@ -124,29 +135,11 @@ body {
         width: 100%;
         min-height: 100px;
         padding: 2rem 3rem;
+        font-size: 1.35rem;
+        font-weight: 100;
         background: #fafafa;
         border-style: none;
         outline: none;
-        font-size: 1.35rem;
-        font-weight: 100;
-    }
-
-    .delete {
-        position: absolute;
-        top: 0;
-        right: 0;
-        width: 50px;
-        height: 100%;
-        font-size: 1.2rem;
-        font-weight: 100;
-        color: black;
-        cursor: pointer;
-        background: transparent;
-        border: none;
-        transform: rotate(45deg);
-        outline: none;
-
-        -webkit-appearance: none;
     }
 }
 
@@ -176,4 +169,38 @@ body {
 
 .filter {
     margin-bottom: 3rem;
+}
+
+.confirmWrap {
+    position: absolute;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    left: -110px;
+    top: 7px;
+    padding: 5px 2px 6px 10px;
+
+    &:before {
+        content: "";
+        position: absolute;
+        right: -6px;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        width: 10px;
+        height: 10px;
+        transform: rotateZ(-45deg);
+        top: 10px;
+        background: white;
+    }
+
+    button {
+        border-radius: 3px;
+        outline: none;
+    }
+
+    p {
+        display: inline;
+        margin-right: 7px;
+        color: #333;
+        font-size: 1.2rem;
+    }
 }

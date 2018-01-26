@@ -1,5 +1,6 @@
 export { CreateForm } from './CreateForm'
 export { CreateNote } from './CreateNote'
+export { ConfirmClick } from './ConfirmClick'
 export { Filter } from './Filter'
 export { List } from './List'
 export { Memo } from './Memo'

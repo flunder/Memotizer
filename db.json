@@ -24,26 +24,11 @@
       "url": "http://facebook.github.io/jest/docs/en/using-matchers.html",
       "notes": [
         {
-          "id": 0,
-          "desc": "expect(2 + 2).toBe(4);"
-        },
-        {
           "id": 1,
           "desc": "expect(data).toEqual({one: 1, two: 2});"
         }
       ],
       "id": 6
-    },
-    {
-      "title": "Build A React App With Redux",
-      "url": "https://egghead.io/courses/build-a-react-app-with-redux",
-      "notes": [
-        {
-          "id": 0,
-          "desc": "E26: using REACT_APP_BASE_URL=http://localhost:8080 in .env "
-        }
-      ],
-      "id": 7
     }
   ],
   "categories": [

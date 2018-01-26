@@ -1,3 +1,18 @@
+/* -----------------------------------------------------------------------------
+
+    Styles
+
+------------------------------------------------------------------------------*/
+/* -----------------------------------------------------------------------------
+
+    Variables
+
+------------------------------------------------------------------------------*/
+/* -----------------------------------------------------------------------------
+
+    Mixins
+
+------------------------------------------------------------------------------*/
 /*  http://meyerweb.com/eric/tools/css/reset/
     v2.0 | 20110126
     License: none (public domain)
@@ -45,6 +60,11 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+/* -----------------------------------------------------------------------------
+
+    Base
+
+------------------------------------------------------------------------------*/
 *, *::after, *::before {
   box-sizing: border-box; }
 
@@ -55,7 +75,7 @@ a {
 img {
   max-width: 100%; }
 
-/* ----------------------------------------------------------------------------------------
+/* -----------------------------------------------------------------------------
 
     Document Outline
 
@@ -63,7 +83,7 @@ img {
     [1] FONTS
     [2] SCALE & RHYTHM
 
-------------------------------------------------------------------------------------------- */
+------------------------------------------------------------------------------*/
 /* [ ] DEFAULTS ------------------------------------------------------------------------- */
 html {
   font-size: 62.5%; }
@@ -154,6 +174,11 @@ h6, .h6 {
 .note {
   font-weight: 300; }
 
+/* -----------------------------------------------------------------------------
+
+    Grid
+
+------------------------------------------------------------------------------*/
 .row {
   margin: 0 auto; }
 
@@ -392,6 +417,37 @@ h6, .h6 {
 
   .xl-12 {
     width: 100%; } }
+/* -----------------------------------------------------------------------------
+
+    Buttons
+
+------------------------------------------------------------------------------*/
+.button {
+  padding: 1rem 2.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none; }
+  .button--primary {
+    color: #b025ffde;
+    border: 1px solid #c867ff63;
+    transition: background-color .3s; }
+    .button--primary:hover {
+      background-color: #f7e9ff; }
+  .button--secondary {
+    color: #867490;
+    border: none;
+    transition: color .3s; }
+    .button--secondary:hover {
+      color: #9336c7de;
+      background-color: inherit; }
+
+/* -----------------------------------------------------------------------------
+
+    Helpers
+    
+------------------------------------------------------------------------------*/
 .noSelect {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -623,6 +679,9 @@ h6, .h6 {
   height: 100vh;
   width: 100vw; }
 
+._borderless {
+  border: none; }
+
 body {
   max-width: 780px;
   margin: 0 auto;
@@ -658,33 +717,34 @@ body {
     border: none;
     outline: none;
     -webkit-appearance: none; }
-  .memo .memo-delete-note-button-wrap {
+  .memo .delete-button-wrap {
     position: absolute;
     top: 0;
     right: 0; }
-  .memo .memo-delete-note-button {
-    width: 4.5rem;
-    height: 4.5rem;
-    font-size: 2rem;
-    font-weight: 100;
-    color: #635f5f;
-    background: transparent;
-    border: none;
-    transform: rotateZ(45deg);
-    -webkit-appearance: none; }
-
-.button {
-  padding: 1rem 2.5rem;
-  font-size: 1.5rem;
-  color: #b025ffde;
-  cursor: pointer;
-  border: none;
-  border: 1px solid #c867ff63;
-  border-radius: 3px;
-  transition: 0.3s background-color;
-  -webkit-appearance: none; }
-  .button:hover {
-    background-color: #f7e9ff; }
+    .memo .delete-button-wrap .delete-button {
+      float: right;
+      width: 4.5rem;
+      height: 4.5rem;
+      font-size: 2rem;
+      font-weight: 300;
+      color: #635f5f;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      outline: none;
+      transform: rotateZ(45deg);
+      -webkit-appearance: none;
+      transition: color 0.3s; }
+      .memo .delete-button-wrap .delete-button:hover {
+        color: black; }
+    .memo .delete-button-wrap--note {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 50px;
+      height: 100%;
+      font-size: 1.2rem;
+      font-weight: 100; }
 
 .note {
   position: relative;
@@ -707,26 +767,11 @@ body {
     width: 100%;
     min-height: 100px;
     padding: 2rem 3rem;
+    font-size: 1.35rem;
+    font-weight: 100;
     background: #fafafa;
     border-style: none;
-    outline: none;
-    font-size: 1.35rem;
-    font-weight: 100; }
-  .note .delete {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 50px;
-    height: 100%;
-    font-size: 1.2rem;
-    font-weight: 100;
-    color: black;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    transform: rotate(45deg);
-    outline: none;
-    -webkit-appearance: none; }
+    outline: none; }
 
 .create-memo header {
   display: flex;
@@ -744,5 +789,32 @@ body {
 
 .filter {
   margin-bottom: 3rem; }
+
+.confirmWrap {
+  position: absolute;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  left: -110px;
+  top: 7px;
+  padding: 5px 2px 6px 10px; }
+  .confirmWrap:before {
+    content: "";
+    position: absolute;
+    right: -6px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    width: 10px;
+    height: 10px;
+    transform: rotateZ(-45deg);
+    top: 10px;
+    background: white; }
+  .confirmWrap button {
+    border-radius: 3px;
+    outline: none; }
+  .confirmWrap p {
+    display: inline;
+    margin-right: 7px;
+    color: #333;
+    font-size: 1.2rem; }
 
 /*# sourceMappingURL=styles.css.map */

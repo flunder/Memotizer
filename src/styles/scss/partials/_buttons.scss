@@ -1,0 +1,37 @@
+/* -----------------------------------------------------------------------------
+
+    Buttons
+
+------------------------------------------------------------------------------*/
+
+.button {
+    padding: 1rem 2.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+    border-radius: 3px;
+    outline: none;
+
+    -webkit-appearance: none;
+
+    &--primary {
+        color: #b025ffde;
+        border: 1px solid #c867ff63;
+        transition: background-color .3s;
+
+        &:hover {
+            background-color: #f7e9ff;
+        }
+    }
+
+    &--secondary {
+        color: #867490;
+        border: none;
+        transition: color .3s;
+
+        &:hover {
+            color: #9336c7de;
+            background-color: inherit;
+        }
+    }
+
+}

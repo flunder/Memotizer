@@ -49,7 +49,7 @@ class CreateForm extends Component {
 
                         <input
                             type="submit"
-                            className="button create-memo-button"
+                            className="button button--primary create-memo-button"
                         />
 
                     </header>

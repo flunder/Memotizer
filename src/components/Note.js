@@ -19,7 +19,7 @@ class Note extends Component {
             <div className="note">
                 {desc}
 
-                <button onClick={this.handleDelete} className="delete">+</button>
+                <button onClick={this.handleDelete} className="delete-button delete-button--note">+</button>
             </div>
         )
     }
