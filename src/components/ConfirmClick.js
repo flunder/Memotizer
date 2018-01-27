@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Transition from 'react-transition-group/Transition'
+import Anime from 'react-anime'
 
 class ConfirmClick extends Component {
 
@@ -28,11 +28,17 @@ class ConfirmClick extends Component {
                 </div>
 
                 {this.state.questioning &&
-                    <div className="confirmWrap noSelect">
-                        <p>Sure?</p>
-                        <button className="button--primary" onClick={this.props.onClick}>Yes</button>
-                        <button className="button--secondary" onClick={this.hideQuestion}>no</button>
-                    </div>
+                    <Anime
+                        translateX={[15, 0]}
+                        opacity={[0, 1]}
+                        scale={[0.9,1]}
+                        >
+                        <div className="confirmWrap noSelect">
+                            <p>Sure?</p>
+                            <button className="button--primary" onClick={this.props.onClick}>Yes</button>
+                            <button className="button--secondary" onClick={this.hideQuestion}>no</button>
+                        </div>
+                    </Anime>
                 }
             </div>
         )
