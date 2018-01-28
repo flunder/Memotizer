@@ -12,6 +12,7 @@ class Memo extends Component {
 
     render() {
         const { id, title, isComplete, url, notes = [] } = this.props;
+        const totalNotes = Object.keys(notes).length;
 
         return (
             <div className="memo">
@@ -20,8 +21,13 @@ class Memo extends Component {
                     <h2>{title}</h2>
                     <h3 className="memo-url">{url}</h3>
 
-                    <ConfirmClick onClick={this.handleDeleteMemo} className="delete-button-wrap">
+                    <ConfirmClick
+                        className="delete-button-wrap"
+                        id={`deleteNote-${id}`}
+                        onClick={this.handleDeleteMemo}>
+
                         <button className="delete-button">+</button>
+
                     </ConfirmClick>
                 </header>
 
@@ -37,7 +43,8 @@ class Memo extends Component {
 
                     <CreateNote
                         memoID={id}
-                        totalNotes={Object.keys(notes).length}
+                        id={`createNote-${id}-${totalNotes}`}
+                        totalNotes={totalNotes}
                     />
                 </main>
 

@@ -1,25 +1,48 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { deleteNote } from '../reducers/memo'
+import { CreateNote } from '.'
 
 class Note extends Component {
 
-    handleDelete = () => {
+    state = {
+        isEditing: false
+    }
 
+    handleDelete = () => {
         this.props.deleteNote({
             memoID: this.props.memoID,
             noteID: this.props.noteID
         })
     }
 
+    handleClick = () => {
+        this.setState({
+            isEditing: true
+        })
+    }
+
+    cancelEditing = () => {
+        this.setState({
+            isEditing: false
+        })
+    }
+
     render() {
         const { desc } = this.props;
 
-        return (
-            <div className="note">
-                {desc}
+        if (this.state.isEditing) {
+            return <CreateNote
+                isEditing
+                cancelEditing={this.cancelEditing}
+                id={`editNote-${this.props.memoID}-${this.props.noteID}`}
+                {...this.props}
+            />
+        }
 
-                <button onClick={this.handleDelete} className="delete-button delete-button--note">+</button>
+        return (
+            <div className="note" onClick={this.handleClick}>
+                {desc}
             </div>
         )
     }

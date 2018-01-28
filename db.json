@@ -24,8 +24,20 @@
       "url": "http://facebook.github.io/jest/docs/en/using-matchers.html",
       "notes": [
         {
+          "id": 0,
+          "desc": "aaax"
+        },
+        {
           "id": 1,
-          "desc": "expect(data).toEqual({one: 1, two: 2});"
+          "desc": "asfasfagafs4"
+        },
+        {
+          "id": 2,
+          "desc": "asfasg2aaa"
+        },
+        {
+          "id": 3,
+          "desc": "asfasffa"
         }
       ],
       "id": 6

@@ -1,15 +1,17 @@
 import {
     apiCreateMemo,
+    apiUpdateMemo,
     apiDeleteMemo,
     apiFetchMemos,
     apiFetchCategories,
-    apiUpdateMemo
 } from '../lib/memoSevices'
 
 const initialState = {
     memos: {},
     categories: {},
-    categoryFilter: false
+    categoryFilter: false,
+    confirmDialogID: false, // Track open 'alerts'
+    editingDialogID: false, // Track edit/create forms
 }
 
 // ACTION-NAMES
@@ -21,6 +23,9 @@ const MEMO_APPLYFILTER = 'MEMO_APPLYFILTER'
 const MEMO_UPDATE = 'MEMO_UPDATE'
 
 const CATEGORIES_LOAD = 'CATEGORIES_LOAD'
+
+const CONFIRM_DIALOG_SHOW = 'CONFIRM_DIALOG_SHOW'
+const EDIT_MEMO_DIALOG_SHOW = 'EDIT_MEMO_SHOW'
 
 // ACTION CREATORS
 
@@ -46,6 +51,14 @@ export const applyFilter = (val) => (
 
 export const loadCategories = (categories) => (
     { type: CATEGORIES_LOAD, payload: { categories } }
+)
+
+export const showConfirmDialog = (id) => (
+    { type: CONFIRM_DIALOG_SHOW, payload: { id } }
+)
+
+export const showEditMemoDialog = (id) => (
+    { type: EDIT_MEMO_DIALOG_SHOW, payload: { id } }
 )
 
 // ASYNC ACTION CREATORS
@@ -109,6 +122,31 @@ export const addNote = ({memoID, noteValue}) => {
     }
 }
 
+
+export const updateNote = ({memoID, noteID, noteValue}) => {
+    return (dispatch, getState) => {
+        const memo = getState().memo.memos[memoID];
+
+        const notes = memo.notes.reduce((acc, val) => {
+            if (val.id === noteID) {
+                acc.push( { id: val.id, desc: noteValue } )
+            } else {
+                acc.push(val)
+            }
+
+            return acc;
+        }, [])
+
+        const updatedMemo = { ...memo, notes }
+
+        apiUpdateMemo(memoID, updatedMemo)
+            .then(res =>
+                dispatch(updateMemo(memo.id, res))
+            )
+
+    }
+}
+
 export const deleteNote = ({memoID, noteID}) => {
     return (dispatch, getState) => {
         const memo = getState().memo.memos[memoID];
@@ -154,6 +192,13 @@ export default (state = initialState, action) => {
 
         case CATEGORIES_LOAD:
             return { ...state, categories: action.payload.categories }
+
+        case CONFIRM_DIALOG_SHOW:
+            return { ...state, confirmDialogID: action.payload.id }
+
+        case EDIT_MEMO_DIALOG_SHOW: {
+            return { ...state, editingDialogID: action.payload.id }
+        }
 
         default:
             return state

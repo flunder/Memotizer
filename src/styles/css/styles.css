@@ -440,7 +440,7 @@ h6, .h6 {
     border: none;
     transition: color .3s; }
     .button--secondary:hover {
-      color: #9336c7de;
+      color: #333;
       background-color: inherit; }
 
 /* -----------------------------------------------------------------------------
@@ -794,7 +794,7 @@ body {
 .confirmWrap {
   position: absolute;
   top: 7px;
-  left: -110px;
+  left: -100px;
   padding: 5px 2px 6px 10px;
   background: white;
   border: 1px solid #ddd;
