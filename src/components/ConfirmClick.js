@@ -29,6 +29,11 @@ class ConfirmClick extends Component {
         this.props.showConfirmDialog(this.props.id);
     }
 
+    triggerAction = (e) => {
+        e.preventDefault();
+        this.props.onClick();
+    }
+
     render() {
         return (
             <div className={this.props.className}>
@@ -39,11 +44,11 @@ class ConfirmClick extends Component {
 
                 {this.state.questioning &&
                     <Anime
-                        translateX={[15, 0]}
+                        translateX={[-15, 0]}
                         opacity={[0, 1]}
                         scale={[0.98,1]}>
-                        <div className="confirmWrap noSelect">
-                            <button className="button--primary" onClick={this.props.onClick}>Sure</button>
+                        <div className="confirmWrap noSelect" style={this.props.confirmWrapStyles}>
+                            <button className="button--primary" onClick={this.triggerAction}>Sure</button>
                             <button className="button--secondary" onClick={this.hideQuestion}>Cancel</button>
                         </div>
                     </Anime>

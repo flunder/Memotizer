@@ -36,6 +36,7 @@ class Note extends Component {
                 isEditing
                 cancelEditing={this.cancelEditing}
                 id={`editNote-${this.props.memoID}-${this.props.noteID}`}
+                deleteFunc={this.handleDelete}
                 {...this.props}
             />
         }

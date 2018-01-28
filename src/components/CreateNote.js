@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addNote, updateNote, showEditMemoDialog } from '../reducers/memo'
+import { ConfirmClick } from '.'
 
 class CreateNote extends Component {
 
@@ -94,6 +95,15 @@ class CreateNote extends Component {
                         </textarea>
 
                         <footer className="footer">
+
+                            <ConfirmClick
+                                className="delete"
+                                id={`deleteNote-${this.props.memoID}-${this.props.noteID}`}
+                                onClick={this.props.deleteFunc}
+                                confirmWrapStyles={{ top: 3 }}>
+                                <button type="button" className="button button--secondary">Delete</button>
+                            </ConfirmClick>
+
                             <button type="button" className="button button--secondary" onClick={this.handleCancel}>
                                 Cancel
                             </button>

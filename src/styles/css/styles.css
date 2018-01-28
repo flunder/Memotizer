@@ -1,6 +1,6 @@
 /* -----------------------------------------------------------------------------
 
-    Styles
+Styles
 
 ------------------------------------------------------------------------------*/
 /* -----------------------------------------------------------------------------
@@ -98,7 +98,8 @@ body {
   font-size: 1.4rem;
   line-height: 1.6; }
 
-input {
+input,
+textarea {
   font-family: sans-serif; }
 
 /* [2] TYPOGRAPHY : SCALE & RHYTHM --------------------------------------------------------
@@ -762,7 +763,15 @@ body {
       flex-direction: column;
       align-items: flex-end; }
     .note.isEditing footer {
-      margin: 2rem 3rem; }
+      display: flex;
+      width: 100%;
+      margin: 0;
+      padding: 2rem 3rem;
+      justify-content: flex-end; }
+      .note.isEditing footer .delete {
+        flex: 1;
+        position: relative;
+        left: -25px; }
   .note .textarea {
     display: block;
     width: 100%;

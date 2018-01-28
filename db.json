@@ -1,25 +1,6 @@
 {
   "memos": [
     {
-      "title": "Should you store your form state in Redux?",
-      "url": "https://goshakkk.name/should-i-put-form-state-into-redux/",
-      "notes": [
-        {
-          "id": 2,
-          "desc": "we"
-        }
-      ],
-      "id": 4,
-      "category": "redux"
-    },
-    {
-      "title": "Container Components",
-      "url": "https://medium.com/@learnreact/container-components-c0e67432e005",
-      "notes": [],
-      "id": 5,
-      "category": "house"
-    },
-    {
       "title": "http://facebook.github.io/jest/docs/en/using-matchers.html",
       "url": "http://facebook.github.io/jest/docs/en/using-matchers.html",
       "notes": [
@@ -29,15 +10,7 @@
         },
         {
           "id": 1,
-          "desc": "asfasfagafs4"
-        },
-        {
-          "id": 2,
-          "desc": "asfasg2aaa"
-        },
-        {
-          "id": 3,
-          "desc": "asfasffa"
+          "desc": "asfasfagasg as as f"
         }
       ],
       "id": 6

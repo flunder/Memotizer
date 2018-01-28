@@ -23,7 +23,7 @@ class Memo extends Component {
 
                     <ConfirmClick
                         className="delete-button-wrap"
-                        id={`deleteNote-${id}`}
+                        id={`deleteMemo-${id}`}
                         onClick={this.handleDeleteMemo}>
 
                         <button className="delete-button">+</button>
